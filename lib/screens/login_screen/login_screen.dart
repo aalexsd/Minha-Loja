@@ -122,7 +122,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context).pushNamed('home');
+                            }
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
