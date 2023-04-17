@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                               prefixIcon: Icon(Icons.mail),
-                              hintText: 'Username'
+                              hintText: 'Email ou Celular'
                           ),
                         ),
                       ),
@@ -61,16 +69,31 @@ class LoginScreen extends StatelessWidget {
                             left: 10,
                             right: 30),
                         child: TextFormField(
-                          decoration: const InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
+                          obscureText: !_showPassword,
+                          decoration: InputDecoration(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     width: 0.2, color: Colors.amber
                                 ),
                               ),
-                              prefixIcon: Icon(Icons.lock),
-                              hintText: 'Password'
+                              prefixIcon: const Icon(Icons.lock),
+                              hintText: 'Senha',
+                              suffixIcon: InkWell(
+                                onTap: _togglePasswordVisibility,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 12.0,
+                                      right: 12,
+                                      bottom: 12),
+                                  child: Text(
+                                    _showPassword ? 'Ocultar' : 'Exibir',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              )
                           ),
-                          obscureText: true,
                           enableSuggestions: false,
                           autocorrect: false,
                         ),
@@ -99,6 +122,17 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
+                        height: 40,
+                        child: TextButton(
+                          child: const Text('Registre-se',
+                            ),
+                          onPressed: (){
+                            onRegisterClicked(context);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
                         child: TextButton(
                           child: const Text('Esqueceu sua senha?',
                           style: TextStyle(
@@ -117,8 +151,19 @@ class LoginScreen extends StatelessWidget {
           ]),
         );
   }
+  void _togglePasswordVisibility(){
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 }
 
 void onForgotPasswordClicked(BuildContext context){
   Navigator.of(context).pushNamed('forgot_password');
 }
+void onRegisterClicked(BuildContext context){
+  Navigator.of(context).pushNamed('register');
+}
+
+
+

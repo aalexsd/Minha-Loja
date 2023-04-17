@@ -83,7 +83,6 @@ class ForgotPassword extends StatelessWidget {
       ),
     );
   }
-
   void onButtonDoneClicked(BuildContext context) {
     Navigator.of(context).pushReplacementNamed('login');
   }
