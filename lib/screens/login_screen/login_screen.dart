@@ -6,6 +6,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEEEFF5),
         body: Stack(
           children: [
             SizedBox(
@@ -104,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                             decoration: TextDecoration.underline
                           ),),
                           onPressed: (){
-                            print('Esqueci!');
+                            onForgotPasswordClicked(context);
                           },
                         ),
                       ),
@@ -118,3 +119,6 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+void onForgotPasswordClicked(BuildContext context){
+  Navigator.of(context).pushNamed('forgot_password');
+}

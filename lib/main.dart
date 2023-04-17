@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testes/screens/forgot_password/forgot_password.dart';
 import 'package:testes/screens/login_screen/login_screen.dart';
 
 void main() {
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      initialRoute: 'login',
+      routes: {
+        'login': (context) => const LoginScreen(),
+        'forgot_password': (context) => const ForgotPassword(),
+      },
     );
   }
 }
