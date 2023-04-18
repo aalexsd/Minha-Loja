@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -15,7 +14,7 @@ class AboutScreen extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed('home');},
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black
         ),
       ),

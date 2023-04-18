@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:testes/screens/about/about_screen.dart';
 import 'package:testes/screens/cart_screen/cart_screen.dart';
+import 'package:testes/screens/contact_screen/contact_screen.dart';
 import 'package:testes/screens/forgot_password/forgot_password.dart';
 import 'package:testes/screens/home_screen/home_screen.dart';
 import 'package:testes/screens/login_screen/login_screen.dart';
 import 'package:testes/screens/payment_screen/payment_screen.dart';
 import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
-
-import 'about/about_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,11 +52,11 @@ class MyApp extends StatelessWidget {
                   ),
                 ],
               ),
-          'payment': (context) => PaymentScreen(),
           'cart': (context) => const CartScreen(),
+          'payment': (context) => PaymentScreen(),
           'about': (context) => const AboutScreen(),
+          'contact': (context) => ContactScreen(),
           'profile': (context) => const ProfileScreen(),
-          'about': (context) => const AboutScreen(),
         });
   }
 }
