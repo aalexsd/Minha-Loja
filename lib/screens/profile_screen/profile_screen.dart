@@ -11,9 +11,9 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 50.0),
-              child: const Text('Meu Perfil',
+            const Padding(
+              padding: EdgeInsets.only(bottom: 50.0),
+              child: Text('Meu Perfil',
               style: TextStyle(fontSize: 40,
               fontWeight: FontWeight.bold),),
             ),

@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   bool _isleftSideScreenOpen = false;
 
-  void _handleMenuItemTap(int index) {
+  void _handleSideMenuItemTap(int index) {
     switch(widget.itemsSide[index]) {
       case 'Início':
         Navigator.of(context).pop();
@@ -43,6 +43,25 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 'Sair':
         Navigator.of(context).pushNamed('login');
+        break;
+      default:
+        if (index >= 0 && index < widget.pages.length) {
+          setState(() {
+            _isleftSideScreenOpen = false;
+            _currentIndex = index;
+          });
+        }
+        break;
+    }
+  }
+
+  void _handleBottomMenuItemTap(int index) {
+    switch(widget.itemsSide[index]) {
+      case 'Buscar':
+        Navigator.of(context).pushNamed('');
+        break;
+      case 'Perfil':
+        Navigator.of(context).pushNamed('profile');
         break;
       default:
         if (index >= 0 && index < widget.pages.length) {
@@ -89,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: Icon(widget.iconsSide[index]),
               title: Text(widget.itemsSide[index]),
               onTap: () {
-                _handleMenuItemTap(index);
+                _handleSideMenuItemTap(index);
               },
             );
           },
@@ -98,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: widget.pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: _handleMenuItemTap,
+        onTap: _handleBottomMenuItemTap,
         items: List.generate(
           widget.itemsBottom.length,
               (index) => BottomNavigationBarItem(

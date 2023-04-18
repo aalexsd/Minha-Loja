@@ -7,6 +7,8 @@ import 'package:testes/screens/payment_screen/payment_screen.dart';
 import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
 
+import 'about/about_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -51,7 +53,10 @@ class MyApp extends StatelessWidget {
                 ],
               ),
           'payment': (context) => PaymentScreen(),
-          'cart': (context) => CartScreen(),
+          'cart': (context) => const CartScreen(),
+          'about': (context) => const AboutScreen(),
+          'profile': (context) => const ProfileScreen(),
+          'about': (context) => const AboutScreen(),
         });
   }
 }
