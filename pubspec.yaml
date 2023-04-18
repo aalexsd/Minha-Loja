@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   mask_text_input_formatter: ^2.4.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,9 +67,14 @@ flutter:
 
   assets:
     - assets/images/logotipo.png
-    - assets/images/logotipo.jpg
-    - assets/images/logotipoo.png
-    - assets/images/logotipooo.png
+    - assets/images/avatar.jpeg
+    - assets/images/avatar.png
+    - assets/images/card1.png
+    - assets/images/card2.png
+    - assets/images/card3.png
+    - assets/images/card4.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

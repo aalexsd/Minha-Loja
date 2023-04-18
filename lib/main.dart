@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:testes/screens/cart_screen/cart_screen.dart';
 import 'package:testes/screens/forgot_password/forgot_password.dart';
 import 'package:testes/screens/home_screen/home_screen.dart';
 import 'package:testes/screens/login_screen/login_screen.dart';
+import 'package:testes/screens/payment_screen/payment_screen.dart';
+import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
 
 void main() {
@@ -19,17 +22,23 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: 'home',
+        initialRoute: 'login',
         routes: {
           'login': (context) => const LoginScreen(),
           'forgot_password': (context) => const ForgotPassword(),
           'register': (context) => const RegisterScreen(),
-          'home': (context) => HomeScreen(
-                itemsSide: const ['Início', 'Pagamento', 'Sobre', 'Contato'],
-                itemsBottom: const ['Início', 'Buscar', 'Perfil'],
-                iconsSide: const [Icons.home, Icons.payment, Icons.info, Icons.contacts],
-                iconsBottom: const [Icons.home, Icons.search, Icons.person],
-                pages: const [
+          'home': (context) => const HomeScreen(
+                itemsSide: ['Início', 'Pagamento', 'Sobre', 'Contato', 'Sair'],
+                itemsBottom: ['Início', 'Buscar', 'Perfil'],
+                iconsSide: [
+                  Icons.home,
+                  Icons.payment,
+                  Icons.info,
+                  Icons.contacts,
+                  Icons.exit_to_app
+                ],
+                iconsBottom: [Icons.home, Icons.search, Icons.person],
+                pages: [
                   Center(
                     child: Text('Itens da Loja'),
                   ),
@@ -37,10 +46,12 @@ class MyApp extends StatelessWidget {
                     child: Text('Buscar itens'),
                   ),
                   Center(
-                    child: Text('Perfil do usuário'),
+                    child: ProfileScreen(),
                   ),
                 ],
               ),
+          'payment': (context) => PaymentScreen(),
+          'cart': (context) => CartScreen(),
         });
   }
 }
