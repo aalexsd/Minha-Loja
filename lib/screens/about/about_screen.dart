@@ -24,7 +24,12 @@ class AboutScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
                const SizedBox(
-                height: 100,
+                 height: 70,
+                 child: Text('Liderança',
+                   style: TextStyle(
+                       fontSize: 35,
+                       fontWeight: FontWeight.bold
+                   ),),
               ),
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,7 +46,20 @@ class AboutScreen extends StatelessWidget {
                            'Brasileiro',
                        textAlign: TextAlign.center,)
                      ],
-                   )
+                   ),
+                   Column(
+                     children: const [
+                       CircleAvatar(
+                         radius: 50,
+                         backgroundImage: AssetImage('assets/images/teresa.jpeg'),
+                       ),
+                       Text('Teresa Starling\n'
+                           'COO\n'
+                           '22 anos\n'
+                           'Brasileira',
+                         textAlign: TextAlign.center,)
+                     ],
+                   ),
                  ],
                ),
                const Padding(

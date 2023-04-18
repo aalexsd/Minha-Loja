@@ -56,9 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleBottomMenuItemTap(int index) {
-    switch(widget.itemsSide[index]) {
+    switch(widget.itemsBottom[index]) {
       case 'Buscar':
-        Navigator.of(context).pushNamed('');
+        Navigator.of(context).pushNamed('search');
         break;
       case 'Perfil':
         Navigator.of(context).pushNamed('profile');

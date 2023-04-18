@@ -7,15 +7,24 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEEEFF5),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color(0xFFEEEFF5),
+        title: const Text(
+          'Meu Perfil',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 50.0),
-              child: Text('Meu Perfil',
-              style: TextStyle(fontSize: 40,
-              fontWeight: FontWeight.bold),),
+            const SizedBox(
+              height: 100,
             ),
             const CircleAvatar(
               radius: 50,

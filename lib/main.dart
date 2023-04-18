@@ -8,6 +8,7 @@ import 'package:testes/screens/login_screen/login_screen.dart';
 import 'package:testes/screens/payment_screen/payment_screen.dart';
 import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
+import 'package:testes/screens/search_screen/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           'about': (context) => const AboutScreen(),
           'contact': (context) => ContactScreen(),
           'profile': (context) => const ProfileScreen(),
+          'search': (context) => const SearchScreen(),
         });
   }
 }
