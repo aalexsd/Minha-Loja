@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   mask_text_input_formatter: ^2.4.0
+  font_awesome_flutter: ^10.4.0
 
 
 dev_dependencies:
@@ -74,6 +75,11 @@ flutter:
     - assets/images/card3.png
     - assets/images/card4.png
     - assets/images/teresa.jpeg
+    - assets/images/card5.jpeg
+    - assets/images/card6.jpeg
+    - assets/images/card7.png
+    - assets/images/product1.jpeg
+    - assets/images/product1.png
 
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -7,10 +8,34 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   final List<String> _cards = [
-    "assets/images/card1.png",
-    "assets/images/card4.png",
-    "assets/images/card3.png"
+    "assets/images/card5.jpeg",
+    "assets/images/card6.jpeg",
+    "assets/images/card7.png"
   ];
+
+  var maskFormatternumber = MaskTextInputFormatter(
+      mask: '#### #### #### ####',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
+
+  var maskFormatterdate = MaskTextInputFormatter(
+      mask: '##/##',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
+
+  var maskFormattercvv = MaskTextInputFormatter(
+      mask: '###',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
+
+  var maskFormatterZipCode = MaskTextInputFormatter(
+      mask: '#####-###',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
 
   String? _selectedCard;
 
@@ -23,18 +48,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEEEFF5),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFFEEEFF5),
-        title: const Text("Pagamento",
-        style: TextStyle(
-          fontSize: 18,
-          color: Colors.black,
+        title: const Text(
+          "Pagamento",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
         ),
-        ),
-        iconTheme: const IconThemeData(
-          color: Colors.black
-        ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -74,6 +99,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [maskFormatternumber],
               decoration: const InputDecoration(
                 labelText: 'Número do cartão',
               ),
@@ -83,6 +110,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               children: [
                 Expanded(
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [maskFormatterdate],
                     decoration: const InputDecoration(
                       labelText: 'Validade',
                     ),
@@ -91,6 +120,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 const SizedBox(width: 16.0),
                 Expanded(
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [maskFormattercvv],
                     decoration: const InputDecoration(
                       labelText: 'CVV',
                     ),
@@ -100,17 +131,31 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [maskFormatterZipCode],
               decoration: const InputDecoration(
                 labelText: 'CEP',
               ),
             ),
             const SizedBox(height: 32.0),
-            SizedBox(
-              width: double.infinity,
-              height: 50.0,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text("Adicionar cartão"),
+            Center(
+              child: SizedBox(
+                width: 200,
+                height: 50.0,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.black87),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            side: const BorderSide(color: Colors.black87))),
+                  ),
+                  child: const Text(
+                    'Adicionar Cartão',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                ),
               ),
             )
           ],

@@ -4,7 +4,9 @@ import 'package:testes/screens/cart_screen/cart_screen.dart';
 import 'package:testes/screens/contact_screen/contact_screen.dart';
 import 'package:testes/screens/forgot_password/forgot_password.dart';
 import 'package:testes/screens/home_screen/home_screen.dart';
+import 'package:testes/screens/home_screen/home_screen2.dart';
 import 'package:testes/screens/login_screen/login_screen.dart';
+import 'package:testes/screens/notify_screen/notify_screen.dart';
 import 'package:testes/screens/payment_screen/payment_screen.dart';
 import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
@@ -25,12 +27,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: 'login',
+        initialRoute: 'home2',
         routes: {
           'login': (context) => const LoginScreen(),
           'forgot_password': (context) => const ForgotPassword(),
           'register': (context) => const RegisterScreen(),
-          'home': (context) => const HomeScreen(
+          'home': (context) =>  HomeScreen(
                 itemsSide: ['Início', 'Pagamento', 'Sobre', 'Contato', 'Sair'],
                 itemsBottom: ['Início', 'Buscar', 'Perfil'],
                 iconsSide: [
@@ -57,8 +59,10 @@ class MyApp extends StatelessWidget {
           'payment': (context) => PaymentScreen(),
           'about': (context) => const AboutScreen(),
           'contact': (context) => ContactScreen(),
-          'profile': (context) => const ProfileScreen(),
+          'profile': (context) => ProfileScreen(),
           'search': (context) => const SearchScreen(),
+          'home2': (context) =>  HomeScreen2(),
+          'notify': (context) =>  NotifyScreen(),
         });
   }
 }

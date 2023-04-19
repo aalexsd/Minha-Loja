@@ -155,11 +155,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all(Colors.blue[900]),
+                        MaterialStateProperty.all(Colors.black87),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0),
-                                side: const BorderSide(color: Colors.blue))),
+                                side: const BorderSide(color: Colors.black87))),
                       ),
                       child: const Text(
                         'Registrar',

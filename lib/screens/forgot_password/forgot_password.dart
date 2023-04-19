@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
 
@@ -24,7 +23,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             child: TextButton(
               child: const Text(
                 'Feito',
-                style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 onButtonDoneClicked(context);
@@ -74,19 +74,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     height: 45,
                     child: ElevatedButton(
                       onPressed: () {
-                        if(_formKey.currentState!.validate()){
+                        if (_formKey.currentState!.validate()) {
                           onButtonDoneClicked(context);
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text('Verifique sua caixa de Email')));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text('Verifique sua caixa de Email')));
                         }
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.blue[900]),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                                side: const BorderSide(color: Colors.blue))),
+                            MaterialStateProperty.all(Colors.black87),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side:
+                                        const BorderSide(color: Colors.black87))),
                       ),
                       child: const Text(
                         'Redefinir senha',

@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(width: 0.2, color: Colors.amber),
+                                  BorderSide(width: 0.2, color: Colors.black26),
                             ),
                             prefixIcon: Icon(Icons.mail),
                             hintText: 'Email ou Celular'),
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                             enabledBorder: const UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(width: 0.2, color: Colors.amber),
+                                  BorderSide(width: 0.2, color: Colors.black26),
                             ),
                             prefixIcon: const Icon(Icons.lock),
                             hintText: 'Senha',
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   _showPassword ? 'Ocultar' : 'Exibir',
                                   style: const TextStyle(
-                                    color: Colors.blue,
+                                    color: Colors.black87,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -108,7 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           'Esqueceu sua senha?',
                           style:
-                              TextStyle(decoration: TextDecoration.underline),
+                              TextStyle(decoration: TextDecoration.underline,
+                              color: Colors.blueAccent),
                         ),
                         onPressed: () {
                           onForgotPasswordClicked(context);
@@ -123,18 +124,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.of(context).pushNamed('home');
+                              Navigator.of(context).pushNamed('home2');
                             }
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
-                                Colors.deepPurpleAccent),
+                                Colors.black87),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     side: const BorderSide(
-                                        color: Colors.deepPurpleAccent))),
+                                        color: Colors.black87))),
                           ),
                           child: const Text(
                             'Login',
@@ -149,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                             child: Divider(
                           thickness: 2,
-                          indent: 30,
+                          indent: 70,
                           endIndent: 10,
                         )),
                         Text("ou"),
@@ -157,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Divider(
                           thickness: 2,
                           indent: 10,
-                          endIndent: 30,
+                          endIndent: 70,
                         )),
                       ]),
                     ),
@@ -166,6 +167,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextButton(
                         child: const Text(
                           'Registre-se',
+                          style: TextStyle(
+                            color: Colors.blueAccent
+                          ),
                         ),
                         onPressed: () {
                           onRegisterClicked(context);

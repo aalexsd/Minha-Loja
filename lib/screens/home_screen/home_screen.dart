@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isleftSideScreenOpen = false;
 
   void _handleSideMenuItemTap(int index) {
-    switch(widget.itemsSide[index]) {
+    switch (widget.itemsSide[index]) {
       case 'Início':
         Navigator.of(context).pop();
         _currentIndex = 0;
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleBottomMenuItemTap(int index) {
-    switch(widget.itemsBottom[index]) {
+    switch (widget.itemsBottom[index]) {
       case 'Buscar':
         Navigator.of(context).pushNamed('search');
         break;
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _handleBottomMenuItemTap,
         items: List.generate(
           widget.itemsBottom.length,
-              (index) => BottomNavigationBarItem(
+          (index) => BottomNavigationBarItem(
             icon: Icon(widget.iconsBottom[index]),
             label: widget.itemsBottom[index],
           ),
@@ -129,4 +129,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
