@@ -13,7 +13,6 @@ class _NotifyScreenState extends State<NotifyScreen> {
     "Nova mensagem de John",
     "Seu pacote foi enviado",
     "10% de desconto em todos os itens hoje!",
-    "Novo seguidor - Sarah",
     "Anúncio importante: manutenção do sistema esta noite",
     "Sua conta foi atualizada",
     "Parabéns! Você ganhou uma medalha",

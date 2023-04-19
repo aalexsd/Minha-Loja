@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testes/data/data.dart';
 import 'package:testes/screens/cart_screen/cart_screen.dart';
 import 'package:testes/screens/home_screen/category_display_screen.dart';
 import 'package:testes/screens/home_screen/product_display_screen.dart';
+import 'package:testes/widgets/top_container.dart';
 
 import '../profile_screen/profile_screen.dart';
 
@@ -17,12 +19,15 @@ class _HomeScreen2State extends State<HomeScreen2> {
   int currentIndex = 0;
   final pageController = PageController(initialPage: 0);
 
+
   final tabBarICons = [
     FontAwesomeIcons.house,
     FontAwesomeIcons.compass,
     FontAwesomeIcons.cartShopping,
     FontAwesomeIcons.user
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
                     currentIndex = index;
                   });
                 },
+
                 children: [
                   const ProductDisplayScreen(),
                   const CategoryDisplayScreen(),

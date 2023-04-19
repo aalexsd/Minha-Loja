@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../data/data.dart';
 
-class TopContainer extends StatelessWidget {
+class TopContainer extends StatefulWidget {
   final String title;
 
 
   const TopContainer({Key? key,
     required this.title,}) : super(key: key);
 
+  @override
+  State<TopContainer> createState() => _TopContainerState();
+}
+
+class _TopContainerState extends State<TopContainer> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,8 +70,8 @@ class TopContainer extends StatelessWidget {
             color: Colors.grey.withOpacity(0.2),
             borderRadius: BorderRadius.circular(30.0),
           ),
-          child: const TextField(
-            decoration: InputDecoration(
+          child: TextField(
+            decoration: const InputDecoration(
                 contentPadding: EdgeInsets.only(top: 5),
                 prefixIcon: Icon(Icons.search,
                   color: Colors.black,
@@ -74,7 +79,7 @@ class TopContainer extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: 'Buscar',
             ),
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20
             ),
           ),

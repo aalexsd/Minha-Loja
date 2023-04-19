@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testes/widgets/product_display_list_view.dart';
 import 'package:testes/widgets/top_container.dart';
 
 
@@ -146,7 +147,7 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         child: Column(
           children: [
-            const TopContainer(title: 'MINHA LOJA'),
+            TopContainer(title: 'MINHA LOJA',),
             // tab bar and tab views
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
@@ -196,6 +197,19 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
                 ],
               ),
             ),
+
+            // tab view
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: tabController,
+                children: const [
+                  ProductDisplayWidget(),
+                ],
+              ),
+            )
           ],
         ),
       ),
