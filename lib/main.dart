@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ],
               ),
-          'cart': (context) => const CartScreen(),
+          'cart': (context) => CartScreen(),
           'payment': (context) => PaymentScreen(),
           'about': (context) => const AboutScreen(),
           'contact': (context) => ContactScreen(),

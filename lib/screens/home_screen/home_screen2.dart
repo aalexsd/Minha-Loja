@@ -42,7 +42,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
                 children: [
                   const ProductDisplayScreen(),
                   const CategoryDisplayScreen(),
-                  const CartScreen(),
+                  CartScreen(),
                   ProfileScreen(),
                 ],
               ),

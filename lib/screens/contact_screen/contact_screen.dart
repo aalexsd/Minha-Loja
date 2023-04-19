@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ContactScreen extends StatelessWidget {
+class ContactScreen extends StatefulWidget {
+  @override
+  _ContactScreenState createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
   final List<Map<String, String>> contacts = [
     {
       'name': 'Afonso Duarte',
@@ -119,12 +124,33 @@ class ContactScreen extends StatelessWidget {
     // add more contacts here as needed
   ];
 
+  String _searchText = '';
+  final TextEditingController _searchController = TextEditingController();
+  List<Map<String, String>> _filteredContacts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredContacts = contacts;
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  void _onSearchChanged() {
+    setState(() {
+      _searchText = _searchController.text;
+      _filteredContacts = contacts.where((contact) {
+        final name = contact['name']!.toLowerCase();
+        return name.contains(_searchText.toLowerCase());
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEEEFF5),
       appBar: AppBar(
-        elevation: 1,
+        elevation: 0,
         backgroundColor: const Color(0xFFEEEFF5),
         title: const Text(
           'Contatos',
@@ -132,36 +158,57 @@ class ContactScreen extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: ListView.builder(
-          itemCount: contacts.length,
-          itemBuilder: (context, index) {
-            final contact = contacts[index];
-            return ListTile(
-              leading: const Icon(Icons.person),
-              title: Text(contact['name']!),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(contact['phone']!),
-                  Text(contact['email']!),
-                  Text(contact['cargo']!),
-                ],
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _searchController,
+              decoration: const InputDecoration(
+                hintText: 'Pesquisar por nome',
+                prefixIcon: Icon(Icons.search),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ContactDetailsScreen(
-                      contact: contact,
+            ),
+          ),
+          Expanded(
+            child: _filteredContacts.isNotEmpty
+                ? ListView.separated(
+              itemCount: _filteredContacts.length,
+              separatorBuilder: (context, index) => const Divider(),
+              itemBuilder: (context, index) {
+                final contact = _filteredContacts[index];
+                return ListTileTheme(
+                  tileColor: Colors.white,
+                  selectedTileColor: Colors.grey[300],
+                  child: ListTile(
+                    leading: const Icon(Icons.person),
+                    title: Text(contact['name']!),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(contact['phone']!),
+                        Text(contact['email']!),
+                        Text(contact['cargo']!),
+                      ],
                     ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ContactDetailsScreen(contact: contact),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
-            );
-          },
-        ),
+            )
+                : const Center(
+              child: Text('Nenhum contato encontrado'),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -178,6 +225,7 @@ class ContactDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFEEEFF5),
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: const Color(0xFFEEEFF5),
         title: const Text(
           'Detalhes do Contato',
