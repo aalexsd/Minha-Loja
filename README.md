@@ -1,16 +1,15 @@
-# testes
+# eCommerce App
 
-A new Flutter project.
+An eCommerce application.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+App for technology eCommerce.
+There is a Login screen with all the fields, including screens for new records and for those who forgot the password, in all these screens the TextFormFields have validators and SnackBars.
 
-A few resources to get you started if this is your first Flutter project:
+In HomeScreen, all registered products are already displayed, with name, current price and previous price.
+It is also possible to navigate through two menus, the side and the bottom.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The side menu includes the payment screens, about the store and contacts.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The bottom menu moves to the Categories, Cart and Profile screens.
