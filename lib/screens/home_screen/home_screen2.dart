@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:testes/data/data.dart';
 import 'package:testes/screens/cart_screen/cart_screen.dart';
 import 'package:testes/screens/home_screen/category_display_screen.dart';
 import 'package:testes/screens/home_screen/product_display_screen.dart';
-import 'package:testes/widgets/top_container.dart';
-
 import '../profile_screen/profile_screen.dart';
 
 class HomeScreen2 extends StatefulWidget {

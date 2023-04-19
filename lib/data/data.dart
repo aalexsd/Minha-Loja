@@ -4,6 +4,7 @@ class Product {
   final String currentPrice;
   final String oldPrice;
   final bool isLiked;
+  final bool isPromotion;
 
   const Product({
     required this.productName,
@@ -11,6 +12,7 @@ class Product {
     required this.currentPrice,
     required this.oldPrice,
     required this.isLiked,
+    required this.isPromotion,
   });
 }
 
@@ -29,28 +31,28 @@ class Category {
 // list of categories
 final categories = [
   const Category(
-    categoryName: "T-SHIRT",
+    categoryName: "Celulares",
     productCount: "240",
     thumbnailImage:
-    "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559",
   ),
   const Category(
-    categoryName: "SHOES",
+    categoryName: "Notebooks",
     productCount: "120",
     thumbnailImage:
-    "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1179&q=80",
+    "https://i.zst.com.br/thumbs/12/23/39/1272724388.jpg",
   ),
   const Category(
-    categoryName: "HODDIE",
+    categoryName: "Consoles",
     productCount: "200",
     thumbnailImage:
-    "https://images.unsplash.com/photo-1647771746277-eac927afab2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "https://static.nagem.com.br/util/artefatos/produtos/m/n/920341670352537/525316_1.jpg",
   ),
   const Category(
-    categoryName: "JEANS",
+    categoryName: "TVs",
     productCount: "240",
     thumbnailImage:
-    "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "https://upconsertos.com.br/wp-content/uploads/2022/08/UN49J5200AGXZD-9-1.jpg",
   ),
 ];
 
@@ -63,6 +65,7 @@ final products = [
     currentPrice: "6999",
     oldPrice: "8000",
     isLiked: true,
+    isPromotion: false,
   ),
   const Product(
     productName: "Apple - iPhone 13 Pro",
@@ -71,6 +74,7 @@ final products = [
     currentPrice: "6000",
     oldPrice: "7000",
     isLiked: false,
+    isPromotion: false,
   ),
   const Product(
     productName: "Apple - iPhone 12 Pro",
@@ -79,6 +83,7 @@ final products = [
     currentPrice: "5000",
     oldPrice: "6000",
     isLiked: false,
+    isPromotion: true,
   ),
   const Product(
     productName: "Apple - iPhone 11",
@@ -87,6 +92,7 @@ final products = [
     currentPrice: "3500",
     oldPrice: "4000",
     isLiked: true,
+    isPromotion: true,
   ),
   const Product(
     productName: "Console Xbox Series S",
@@ -95,6 +101,7 @@ final products = [
     currentPrice: "3000",
     oldPrice: "2000",
     isLiked: false,
+    isPromotion: true,
   ),
   const Product(
     productName: "Console Playstation 5",
@@ -103,6 +110,7 @@ final products = [
     currentPrice: "5000",
     oldPrice: "4500",
     isLiked: true,
+    isPromotion: true,
   ),
   const Product(
     productName: "Samsung - Galaxy S23 Ultra",
@@ -111,6 +119,7 @@ final products = [
     currentPrice: "6000",
     oldPrice: "5000",
     isLiked: false,
+    isPromotion: true,
   ),
   const Product(
     productName: "Samsung - Galaxy ZFold 4",
@@ -119,6 +128,7 @@ final products = [
     currentPrice: "8000",
     oldPrice: "6000",
     isLiked: false,
+    isPromotion: true,
   ),
   const Product(
     productName: "Apple - MacBook Pro M1",
@@ -127,6 +137,7 @@ final products = [
     currentPrice: "10000",
     oldPrice: "9000",
     isLiked: false,
+    isPromotion: false,
   ),
   const Product(
     productName: "Dell - Alieanware",
@@ -135,5 +146,6 @@ final products = [
     currentPrice: "12000",
     oldPrice: "11000",
     isLiked: true,
+    isPromotion: false,
   ),
 ];

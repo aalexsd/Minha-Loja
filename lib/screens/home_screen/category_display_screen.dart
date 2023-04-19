@@ -17,15 +17,22 @@ class _CategoryDisplayScreenState extends State<CategoryDisplayScreen> {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TopContainer(
-            title: "Categoria",
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Text(
+              'Categorias',
+              style: TextStyle(
+                  fontSize: 22, fontWeight: FontWeight.w500, color: Colors.black),
+            ),
           ),
           ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: categories.length,
             itemBuilder: (context, index) {
+
               return Container(
                 width: MediaQuery.of(context).size.width * 0.80,
                 height: 170,
@@ -65,16 +72,16 @@ class _CategoryDisplayScreenState extends State<CategoryDisplayScreen> {
                           Text(
                             categories[index].categoryName,
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            "${categories[index].productCount} Products",
+                            "${categories[index].productCount} Produtos",
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 12.0,
                               fontWeight: FontWeight.w500,
                             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../data/data.dart';
 
 class TopContainer extends StatefulWidget {
   final String title;
@@ -70,8 +69,8 @@ class _TopContainerState extends State<TopContainer> {
             color: Colors.grey.withOpacity(0.2),
             borderRadius: BorderRadius.circular(30.0),
           ),
-          child: TextField(
-            decoration: const InputDecoration(
+          child: const TextField(
+            decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(top: 5),
                 prefixIcon: Icon(Icons.search,
                   color: Colors.black,
@@ -79,7 +78,7 @@ class _TopContainerState extends State<TopContainer> {
                 border: InputBorder.none,
                 hintText: 'Buscar',
             ),
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 20
             ),
           ),
