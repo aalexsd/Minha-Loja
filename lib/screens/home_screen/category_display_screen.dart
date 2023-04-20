@@ -19,8 +19,8 @@ class _CategoryDisplayScreenState extends State<CategoryDisplayScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
             child: Text(
               'Categorias',
               style: TextStyle(

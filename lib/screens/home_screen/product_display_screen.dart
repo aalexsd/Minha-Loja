@@ -17,6 +17,8 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
   int selectedValue = 0;
   int currentIndex = 0;
 
+
+
   @override
   void initState() {
     super.initState();
@@ -147,8 +149,7 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         child: Column(
           children: [
-            TopContainer(title: 'MINHA LOJA',),
-            // tab bar and tab views
+            const TopContainer(), // tab bar and tab views
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: TabBar(

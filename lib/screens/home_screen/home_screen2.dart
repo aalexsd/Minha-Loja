@@ -6,7 +6,7 @@ import 'package:testes/screens/home_screen/product_display_screen.dart';
 import '../profile_screen/profile_screen.dart';
 
 class HomeScreen2 extends StatefulWidget {
-  HomeScreen2({Key? key}) : super(key: key);
+  const HomeScreen2({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen2> createState() => _HomeScreen2State();
@@ -16,15 +16,12 @@ class _HomeScreen2State extends State<HomeScreen2> {
   int currentIndex = 0;
   final pageController = PageController(initialPage: 0);
 
-
   final tabBarICons = [
     FontAwesomeIcons.house,
     FontAwesomeIcons.compass,
     FontAwesomeIcons.cartShopping,
     FontAwesomeIcons.user
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,6 @@ class _HomeScreen2State extends State<HomeScreen2> {
                     currentIndex = index;
                   });
                 },
-
                 children: [
                   const ProductDisplayScreen(),
                   const CategoryDisplayScreen(),
@@ -74,8 +70,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
                                 ? Colors.white
                                 : Colors.white70,
                             size: 25,
-                          )
-                      )),
+                          ))),
                     ],
                   ),
                 ),

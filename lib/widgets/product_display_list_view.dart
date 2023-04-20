@@ -78,7 +78,7 @@ class _ProductDisplayWidgetState extends State<ProductDisplayWidget> {
                     child: Row(
                       children: [
                         Text('R\$${product.currentPrice}'),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Text('R\$${product.oldPrice}',
                           style: const TextStyle(
                               color: Colors.grey,

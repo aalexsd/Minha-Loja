@@ -10,6 +10,7 @@ import 'package:testes/screens/notify_screen/notify_screen.dart';
 import 'package:testes/screens/payment_screen/payment_screen.dart';
 import 'package:testes/screens/profile_screen/profile_screen.dart';
 import 'package:testes/screens/register_screen/register_screen.dart';
+import '../../project_capyba/lib/screens/register_screen.dart';
 import 'package:testes/screens/search_screen/search_screen.dart';
 
 void main() {
@@ -33,21 +34,21 @@ class MyApp extends StatelessWidget {
           'forgot_password': (context) => const ForgotPassword(),
           'register': (context) => const RegisterScreen(),
           'home': (context) =>  HomeScreen(
-                itemsSide: ['Início', 'Pagamento', 'Sobre', 'Contato', 'Sair'],
-                itemsBottom: ['Início', 'Buscar', 'Perfil'],
-                iconsSide: [
+                itemsSide: const ['Início', 'Pagamento', 'Sobre', 'Contato', 'Sair'],
+                itemsBottom: const ['Início', 'Buscar', 'Perfil'],
+                iconsSide: const [
                   Icons.home,
                   Icons.payment,
                   Icons.info,
                   Icons.contacts,
                   Icons.exit_to_app
                 ],
-                iconsBottom: [Icons.home, Icons.search, Icons.person],
+                iconsBottom: const [Icons.home, Icons.search, Icons.person],
                 pages: [
-                  Center(
+                  const Center(
                     child: Text('Itens da Loja'),
                   ),
-                  Center(
+                  const Center(
                     child: Text('Buscar itens'),
                   ),
                   Center(
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
           'contact': (context) => ContactScreen(),
           'profile': (context) => ProfileScreen(),
           'search': (context) => const SearchScreen(),
-          'home2': (context) =>  HomeScreen2(),
+          'home2': (context) =>  const HomeScreen2(),
           'notify': (context) =>  NotifyScreen(),
         });
   }
