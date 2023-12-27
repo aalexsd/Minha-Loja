@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:testes/screens/bottom_nav_screen.dart';
 import '../../widgets/alert.dart';
 import '../home_screen/home_screen.dart';
 import '../home_screen/home_screen2.dart';
@@ -133,12 +134,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 250,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate())   {
                               setState(() {
                                 _loading = true;
                               });
-                              _myLogin(_emailController.text,
+                              await _myLogin(_emailController.text,
                                   _passwordController.text);
                             }
                           },
@@ -152,7 +153,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     side: const BorderSide(
                                         color: Colors.black87))),
                           ),
-                          child: const Text(
+                          child: 
+                          _loading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              :
+                          const Text(
                             'Login',
                             style: TextStyle(fontSize: 17),
                           ),
@@ -220,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen2(),
+            builder: (context) => BottomNavScreen(),
           ),
         );
       } else {
