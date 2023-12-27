@@ -167,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                            setState(() {
                           _loading = true;
                         });
-                          _myLogin(_nameController.text, _emailController.text,
+                          _signUp(_nameController.text, _emailController.text,
                               _telController.text, _passwordController.text);
                         }
                       },
@@ -204,7 +204,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Future<void> _myLogin(
+  Future<void> _signUp(
       String nome, String email, String telefone, String senha) async {
     if (nome.isEmpty || email.isEmpty || telefone.isEmpty || senha.isEmpty) {
       showAlertDialog1ok(context, "Login e/ou Senha em branco");
@@ -220,7 +220,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var data2 = json.encode(data);
 
     try {
-      final response = await http.post(Uri.parse("http://localhost:8081/users"),
+      final response = await http.post(Uri.parse("http://localhost:8081/cadastro"),
           body: data2, headers: {"Content-Type": "application/json"});
       print(response.statusCode);
       setState(() {
@@ -230,7 +230,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 200) {
       
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Conta criada com Sucesso')));
+            const SnackBar(content: Text('Usuário criado com Sucesso')));
         Navigator.push(
           context,
           MaterialPageRoute(

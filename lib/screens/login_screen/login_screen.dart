@@ -15,36 +15,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _showPassword = false;
-  final _formKey = GlobalKey<FormState>();Future<void> _myLogin(String login, String senha, int idade) async {
-  if (login.isEmpty || senha.isEmpty || idade == null) {
-    showAlertDialog1ok(context, "Login e/ou Senha em branco");
-    return;
-  }
-
-  var data = {"name": login, "email": senha, "age": idade};
-  var data2 = json.encode(data);
-
-  try {
-    final response = await http.post(Uri.parse("http://localhost:8081/users"), body: data2, headers: {"Content-Type": "application/json"} );
-    print(response.statusCode);
-
-    if (response.statusCode == 200) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen2(),
-        ),
-      );
-    } else {
-      // Trata erro de forma personalizada
-      showAlertDialog1ok(context, "${jsonDecode(response.body)["error"]}");
-    }
-  } catch (e) {
-    // Captura erro geral
-    showAlertDialog1ok(context, "Erro ao realizar login. Detalhes: $e");
-  }
-}
-
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +66,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding:
                           const EdgeInsets.only(top: 20, left: 10, right: 30),
                       child: TextFormField(
+                        controller: _emailController,
                         validator: (String? value) {
                           if (valueValidator(value)) {
-                            return 'Insira um Email ou Celular';
+                            return 'Insira seu Email';
                           }
                           return null;
                         },
@@ -104,13 +79,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   BorderSide(width: 0.2, color: Colors.black26),
                             ),
                             prefixIcon: Icon(Icons.mail),
-                            hintText: 'Email ou Celular'),
+                            hintText: 'Email'),
                       ),
                     ),
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 20, left: 10, right: 30),
                       child: TextFormField(
+                        controller: _passwordController,
                         obscureText: !_showPassword,
                         decoration: InputDecoration(
                             enabledBorder: const UnderlineInputBorder(
@@ -142,8 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextButton(
                         child: const Text(
                           'Esqueceu sua senha?',
-                          style:
-                              TextStyle(decoration: TextDecoration.underline,
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
                               color: Colors.blueAccent),
                         ),
                         onPressed: () {
@@ -158,11 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                          //  _myLogin(, senha, idade);
+                            if (_formKey.currentState!.validate()) {
+                              setState(() {
+                                _loading = true;
+                              });
+                              _myLogin(_emailController.text,
+                                  _passwordController.text);
+                            }
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Colors.black87),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.black87),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -200,9 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextButton(
                         child: const Text(
                           'Registre-se',
-                          style: TextStyle(
-                            color: Colors.blueAccent
-                          ),
+                          style: TextStyle(color: Colors.blueAccent),
                         ),
                         onPressed: () {
                           onRegisterClicked(context);
@@ -217,6 +197,40 @@ class _LoginScreenState extends State<LoginScreen> {
         ]),
       ),
     );
+  }
+
+  Future<void> _myLogin(String login, String senha) async {
+    if (login.isEmpty || senha.isEmpty) {
+      showAlertDialog1ok(context, "Login e/ou Senha em branco. Tente novamente.");
+      return;
+    }
+
+    var data = {"email": login, "senha": senha};
+    var data2 = json.encode(data);
+    setState(() {
+      _loading = false;
+    });
+
+    try {
+      final response = await http.post(Uri.parse("http://localhost:8081/login"),
+          body: data2, headers: {"Content-Type": "application/json"});
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen2(),
+          ),
+        );
+      } else {
+        // Trata erro de forma personalizada
+        showAlertDialog1ok(context, "${jsonDecode(response.body)["error"]}");
+      }
+    } catch (e) {
+      // Captura erro geral
+      showAlertDialog1ok(context, "Erro ao realizar login. Detalhes: $e");
+    }
   }
 
   void _togglePasswordVisibility() {

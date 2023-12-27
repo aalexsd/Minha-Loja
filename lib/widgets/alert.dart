@@ -6,6 +6,9 @@ Future<void> showAlertDialog1ok(BuildContext context, String mensagem,
   // configura o button
   Widget okButton = ElevatedButton(
     child: Text("OK"),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.black87,
+    ),
     onPressed: () {
       int x;
       for (x = 0; x < nPop; x++) Navigator.of(context).pop();
