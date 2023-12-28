@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../cart_screen/cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<String> itemsSide;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:testes/screens/cart_screen/cart_screen.dart';
-import 'package:testes/screens/home_screen/category_display_screen.dart';
-import 'package:testes/screens/home_screen/product_display_screen.dart';
-import '../profile_screen/profile_screen.dart';
+import 'package:testes/screens/product_display_screen.dart';
+import 'package:testes/screens/profile_screen.dart';
+
+import 'cart_screen.dart';
+import 'category_display_screen.dart';
 
 class HomeScreen2 extends StatefulWidget {
   const HomeScreen2({Key? key}) : super(key: key);

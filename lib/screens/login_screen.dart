@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:testes/screens/bottom_nav_screen.dart';
-import '../../widgets/alert.dart';
-import '../home_screen/home_screen.dart';
-import '../home_screen/home_screen2.dart';
+import '../bloc/ws_login.dart';
+import '../widgets/alert.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -135,11 +134,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
-                            if (_formKey.currentState!.validate())   {
+                            if (_formKey.currentState!.validate()) {
                               setState(() {
                                 _loading = true;
                               });
-                              await _myLogin(_emailController.text,
+                              await _clicklogin(context, _emailController.text,
                                   _passwordController.text);
                             }
                           },
@@ -153,16 +152,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     side: const BorderSide(
                                         color: Colors.black87))),
                           ),
-                          child: 
-                          _loading
+                          child: _loading
                               ? const CircularProgressIndicator(
                                   color: Colors.white,
                                 )
-                              :
-                          const Text(
-                            'Login',
-                            style: TextStyle(fontSize: 17),
-                          ),
+                              : const Text(
+                                  'Login',
+                                  style: TextStyle(fontSize: 17),
+                                ),
                         ),
                       ),
                     ),
@@ -206,24 +203,51 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> _myLogin(String login, String senha) async {
+  // Future<void> _myLogin(String login, String senha) async {
+  //   if (login.isEmpty || senha.isEmpty) {
+  //     showAlertDialog1ok(context, "Login e/ou Senha em branco. Tente novamente.");
+  //     return;
+  //   }
+
+  //   var data = {"email": login, "senha": senha};
+  //   var data2 = json.encode(data);
+  //   setState(() {
+  //     _loading = false;
+  //   });
+
+  //   try {
+  //     final response = await http.post(Uri.parse("http://localhost:8081/login"),
+  //         body: data2, headers: {"Content-Type": "application/json"});
+  //     print(response.statusCode);
+
+  //     if (response.statusCode == 200) {
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => BottomNavScreen(),
+  //         ),
+  //       );
+  //     } else {
+  //       // Trata erro de forma personalizada
+  //       showAlertDialog1ok(context, "${jsonDecode(response.body)["error"]}");
+  //     }
+  //   } catch (e) {
+  //     // Captura erro geral
+  //     showAlertDialog1ok(context, "Erro ao realizar login. Detalhes: $e");
+  //   }
+  // }
+
+  _clicklogin(BuildContext context, String login, String senha) async {
+    var ret = false;
     if (login.isEmpty || senha.isEmpty) {
-      showAlertDialog1ok(context, "Login e/ou Senha em branco. Tente novamente.");
-      return;
-    }
+      showAlertDialog1ok(context, "Login e/ou Senha em branco");
+    } else {
+      setState(() => _loading = true);
 
-    var data = {"email": login, "senha": senha};
-    var data2 = json.encode(data);
-    setState(() {
-      _loading = false;
-    });
+      ret = await myLogin(login, senha);
+      setState(() => _loading = false);
 
-    try {
-      final response = await http.post(Uri.parse("http://localhost:8081/login"),
-          body: data2, headers: {"Content-Type": "application/json"});
-      print(response.statusCode);
-
-      if (response.statusCode == 200) {
+      if (ret) {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -231,12 +255,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         );
       } else {
-        // Trata erro de forma personalizada
-        showAlertDialog1ok(context, "${jsonDecode(response.body)["error"]}");
+        showAlertDialog1ok(context, "Login e/ou Senha inválido(s)");
       }
-    } catch (e) {
-      // Captura erro geral
-      showAlertDialog1ok(context, "Erro ao realizar login. Detalhes: $e");
     }
   }
 

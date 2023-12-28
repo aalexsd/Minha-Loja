@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^3.2.3
   http: ^0.13.0
   salomon_bottom_bar: ^3.3.2
+  cpf_cnpj_validator: ^2.0.0
 
 dev_dependencies:
   flutter_test:

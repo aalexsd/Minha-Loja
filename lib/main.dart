@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:testes/screens/about/about_screen.dart';
-import 'package:testes/screens/cart_screen/cart_screen.dart';
-import 'package:testes/screens/contact_screen/contact_screen.dart';
-import 'package:testes/screens/forgot_password/forgot_password.dart';
-import 'package:testes/screens/home_screen/home_screen.dart';
-import 'package:testes/screens/home_screen/home_screen2.dart';
-import 'package:testes/screens/login_screen/login_screen.dart';
-import 'package:testes/screens/notify_screen/notify_screen.dart';
-import 'package:testes/screens/payment_screen/payment_screen.dart';
-import 'package:testes/screens/profile_screen/profile_screen.dart';
-import 'package:testes/screens/register_screen/register_screen.dart';
-import 'package:testes/screens/search_screen/search_screen.dart';
+import 'package:testes/screens/cart_screen.dart';
+import 'package:testes/screens/contact_screen.dart';
+import 'package:testes/screens/forgot_password.dart';
+import 'package:testes/screens/home_screen.dart';
+import 'package:testes/screens/home_screen2.dart';
+import 'package:testes/screens/login_screen.dart';
+import 'package:testes/screens/notify_screen.dart';
+import 'package:testes/screens/payment_screen.dart';
+import 'package:testes/screens/profile_screen.dart';
+import 'package:testes/screens/register_screen.dart';
+import 'package:testes/screens/search_screen.dart';
+import 'package:testes/screens/about_screen.dart';
 
 void main() {
   runApp(const MyApp());

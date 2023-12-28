@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:testes/widgets/product_display_list_view.dart';
 import 'package:testes/widgets/top_container.dart';
 
+import '../models/result.pessoa.dart';
+
 
 class ProductDisplayScreen extends StatefulWidget {
   const ProductDisplayScreen({Key? key}) : super(key: key);
@@ -48,13 +50,10 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
             );
           },
         ),
-        title: const Padding(
-          padding: EdgeInsets.only(right: 58.0),
-          child: Text(
-            'MINHA LOJA',
-            style: TextStyle(
-                fontSize: 22, fontWeight: FontWeight.w500, color: Colors.black),
-          ),
+        title: Text(
+          'Olá, ${user.nome}',
+          style: TextStyle(
+              fontSize: 22, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         actions: [
           Row(
