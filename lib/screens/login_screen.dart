@@ -67,12 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           const EdgeInsets.only(top: 20, left: 10, right: 30),
                       child: TextFormField(
                         controller: _emailController,
-                        validator: (String? value) {
-                          if (valueValidator(value)) {
-                            return 'Insira seu Email';
-                          }
-                          return null;
-                        },
+                       
                         decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
@@ -240,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
   _clicklogin(BuildContext context, String login, String senha) async {
     var ret = false;
     if (login.isEmpty || senha.isEmpty) {
-      showAlertDialog1ok(context, "Login e/ou Senha em branco");
+      showAlertDialog1ok(context, "Login e/ou Senha em branco").then((value) => setState(() => _loading = false));
     } else {
       setState(() => _loading = true);
 

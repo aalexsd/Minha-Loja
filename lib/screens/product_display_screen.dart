@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testes/screens/login_screen.dart';
 import 'package:testes/widgets/product_display_list_view.dart';
 import 'package:testes/widgets/top_container.dart';
 
@@ -138,7 +139,7 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
             ListTile(
               title: const Text('Sair'),
               onTap: () {
-                Navigator.of(context).pushNamed('login');
+                sair(context);
               },
             ),
           ],
@@ -215,4 +216,18 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
       ),
     );
   }
+
+  sair(BuildContext context) {
+  // var bloc = Provider.of<UserBloc>(context);
+  //var res = await bloc.create(user);
+
+  if (true) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    );
+  }
+}
 }
