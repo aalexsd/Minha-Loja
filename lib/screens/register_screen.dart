@@ -4,6 +4,7 @@ import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:http/http.dart' as http;
+import 'package:testes/bloc/wsf_param.dart';
 import 'package:testes/screens/login_screen.dart';
 import 'package:testes/screens/register_screen2.dart';
 import '../models/result.pessoa.dart';
@@ -384,7 +385,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     try {
       final response = await http.post(
         Uri.parse(
-            'http://localhost:8081/verificar-usuario'), // Substitua pelo endereço correto da sua API
+            Wsf().baseurl() + 'verificar-usuario'), // Substitua pelo endereço correto da sua API
         body: jsonEncode({
           'cpf': _cpfController.text.replaceAll(".", "").replaceAll("-", ""),
           'email': _emailController.text,

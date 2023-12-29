@@ -1,223 +1,195 @@
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+
+void main() => runApp(const PaymentScreen());
 
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
+
   @override
-  _PaymentScreenState createState() => _PaymentScreenState();
+  State<StatefulWidget> createState() => PaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
-  final List<String> _cards = [
-    "assets/images/card5.jpeg",
-    "assets/images/card6.jpeg",
-    "assets/images/card7.png"
-  ];
-
-  final _formKey = GlobalKey<FormState>();
-
-  var cardNumberFormatter = MaskTextInputFormatter(
-      mask: '#### #### #### ####',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-
-  var expirationDateFormatter = MaskTextInputFormatter(
-      mask: '##/##',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-
-  var cvvFormatter = MaskTextInputFormatter(
-      mask: '###',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-
-  var zipCodeFormatter = MaskTextInputFormatter(
-      mask: '#####-###',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-
-  String? _selectedCard;
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedCard = _cards[0];
-  }
+class PaymentScreenState extends State<PaymentScreen> {
+  bool isLightTheme = false;
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool isCvvFocused = false;
+  bool useGlassMorphism = false;
+  bool useBackgroundImage = false;
+  bool useFloatingAnimation = true;
+  final OutlineInputBorder border = OutlineInputBorder(
+    borderSide: BorderSide(
+      color: Colors.grey.withOpacity(0.7),
+      width: 2.0,
+    ),
+  );
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      isLightTheme ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
+    );
     return Scaffold(
-      backgroundColor: const Color(0xFFEEEFF5),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color(0xFFEEEFF5),
+        backgroundColor: Colors.black87,
+        centerTitle: true,
         title: const Text(
-          "Pagamento",
+          'Pagamento',
           style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
+            color: Colors.white,
+          
+            fontSize: 24,
+        
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Cartões salvos",
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 16.0),
-                SizedBox(
-                  height: 125.0,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _cards.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            _selectedCard = _cards[index];
-                          });
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 16.0),
-                          width: 200.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: _selectedCard == _cards[index]
-                                  ? Colors.white
-                                  : Colors.transparent,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(_cards[index]),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 16.0),
-                const Text(
-                  "Novo cartão",
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [cardNumberFormatter],
-                  decoration: const InputDecoration(
-                    labelText: 'Número do cartão',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Campo obrigatório';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Nome do titular',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Campo obrigatório';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [expirationDateFormatter],
-                        decoration: const InputDecoration(
-                          labelText: 'Validade',
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Campo obrigatório';
-                          }
-                          return null;
-                        },
-                      ),
+      
+        resizeToAvoidBottomInset: false,
+        body: Builder(
+          builder: (BuildContext context) {
+            return Container(
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    CreditCardWidget(
+                      isChipVisible: false,
+                      enableFloatingCard: useFloatingAnimation,
+                      glassmorphismConfig: _getGlassmorphismConfig(),
+                      cardNumber: cardNumber,
+                      expiryDate: expiryDate,
+                      cardHolderName: cardHolderName,
+                      cvvCode: cvvCode,
+                      frontCardBorder: useGlassMorphism
+                          ? null
+                          : Border.all(color: Colors.grey),
+                      backCardBorder: useGlassMorphism
+                          ? null
+                          : Border.all(color: Colors.grey),
+                      showBackView: isCvvFocused,
+                      obscureCardNumber: true,
+                      obscureCardCvv: true,
+                      isHolderNameVisible: true,
+                      isSwipeGestureEnabled: true,
+                      onCreditCardWidgetChange:
+                          (CreditCardBrand creditCardBrand) {},
+                      customCardTypeIcons: <CustomCardTypeIcon>[
+                        
+                      ],
                     ),
-                    const SizedBox(width: 16.0),
                     Expanded(
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [cvvFormatter],
-                        decoration: const InputDecoration(
-                          labelText: 'CVV',
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            CreditCardForm(
+                              formKey: formKey,
+                              obscureCvv: true,
+                              obscureNumber: true,
+                              cardNumber: cardNumber,
+                              cvvCode: cvvCode,
+                              isHolderNameVisible: true,
+                              isCardNumberVisible: true,
+                              isExpiryDateVisible: true,
+                              cardHolderName: cardHolderName,
+                              expiryDate: expiryDate,
+                              inputConfiguration: const InputConfiguration(
+                                cardNumberDecoration: InputDecoration(
+                                  labelText: 'Número do cartão',
+                                  hintText: 'XXXX XXXX XXXX XXXX',
+                                ),
+                                expiryDateDecoration: InputDecoration(
+                                  labelText: 'Data de expiração',
+                                  hintText: 'XX/XX',
+                                ),
+                                cvvCodeDecoration: InputDecoration(
+                                  labelText: 'CVV',
+                                  hintText: 'XXX',
+                                ),
+                                cardHolderDecoration: InputDecoration(
+                                  labelText: 'Nome',
+                                ),
+                              ),
+                              onCreditCardModelChange: onCreditCardModelChange,
+                            ),
+                          
+      
+                            const SizedBox(height: 20),
+                            GestureDetector(
+                              onTap: _onValidate,
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                padding:
+                                const EdgeInsets.symmetric(vertical: 15),
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Validar',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'halter',
+                                    fontSize: 14,
+                                
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Campo obrigatório';
-                          }
-                          return null;
-                        },
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  inputFormatters: [zipCodeFormatter],
-                  decoration: const InputDecoration(
-                    labelText: 'CEP',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Campo obrigatório';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 32.0),
-                Center(
-                  child: SizedBox(
-                    height: 45,
-                    width: 300,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(Colors.black87),
-                        shape: MaterialStateProperty
-                            .all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            side: const BorderSide(color: Colors.black87))),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-// payment process
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                Text('Cartão Adicionado com sucesso!')),
-                          );
-                        }
-                      },
-                      child: const Text('Adicionar Cartão'),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
-      ),
+      );
+  }
+
+  void _onValidate() {
+    if (formKey.currentState?.validate() ?? false) {
+      print('valid!');
+    } else {
+      print('invalid!');
+    }
+  }
+
+  Glassmorphism? _getGlassmorphismConfig() {
+    if (!useGlassMorphism) {
+      return null;
+    }
+
+    final LinearGradient gradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[Colors.grey.withAlpha(50), Colors.grey.withAlpha(50)],
+      stops: const <double>[0.3, 0],
     );
+
+    return isLightTheme
+        ? Glassmorphism(blurX: 8.0, blurY: 16.0, gradient: gradient)
+        : Glassmorphism.defaultConfig();
+  }
+
+  void onCreditCardModelChange(CreditCardModel creditCardModel) {
+    setState(() {
+      cardNumber = creditCardModel.cardNumber;
+      expiryDate = creditCardModel.expiryDate;
+      cardHolderName = creditCardModel.cardHolderName;
+      cvvCode = creditCardModel.cvvCode;
+      isCvvFocused = creditCardModel.isCvvFocused;
+    });
   }
 }

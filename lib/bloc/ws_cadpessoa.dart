@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:testes/bloc/wsf_param.dart';
 
 class API {
   
@@ -27,7 +28,7 @@ static Future<bool> cadUsuario(usuario) async {
 
     var data2 = json.encode(data);
 
-    final response = await http.post(Uri.parse("http://localhost:8081/cadastro"), body: data2, headers: {"Content-Type": "application/json"});
+    final response = await http.post(Uri.parse(Wsf().baseurl() + 'cadastro'), body: data2, headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
       return true;
